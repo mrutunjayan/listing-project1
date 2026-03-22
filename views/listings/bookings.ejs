@@ -1,0 +1,54 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container">
+    <h3 class="bk-header text-center text-md-start">My Bookings</h3>
+
+    <% if (allBookings && allBookings.length > 0) { %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            
+            <% for(let booking of allBookings) { %>
+                <div class="col">
+                    <a href="/listings/<%= booking.listing?._id %>" class="bk-card h-100">
+                        
+                        <div class="bk-img-container">
+                            <div class="bk-date-badge">
+                                <i class="fa-solid fa-calendar-check me-1"></i>
+                                <%= booking.createdAt ? booking.createdAt.toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'}) : 'Reserved' %>
+                            </div>
+
+                            <img 
+                                src="<%= booking.listing?.image?.url || '/default.jpg' %>" 
+                                class="bk-img"
+                                alt="listing_img"
+                            >
+                        </div>
+
+                        <div class="bk-body">
+                            <h5 class="bk-title">
+                                <%= booking.listing?.title || "Listing Unavailable" %>
+                            </h5>
+                            
+                            <p class="bk-location">
+                                <i class="fa-solid fa-location-dot me-1"></i>
+                                <%= booking.listing?.location %>, <%= booking.listing?.country %>
+                            </p>
+
+                            <p class="bk-price">
+                                ₹ <%= booking.listing?.price ? booking.listing.price.toLocaleString("en-IN") : "N/A" %>
+                                <span>/ night</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+
+        </div>
+    <% } else { %>
+        <div class="bk-empty-wrapper">
+            <i class="fa-solid fa- suitcase-rolling fa-4x mb-4 opacity-25"></i>
+            <h4 class="fw-bold">No trips booked yet</h4>
+            <p class="text-muted">Time to dust off your bags and start your next adventure!</p>
+            <a href="/listings" class="bk-explore-btn">Explore Destinations</a>
+        </div>
+    <% } %>
+</div>

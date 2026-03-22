@@ -1,0 +1,168 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container create-lgnd-wrapper">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="create-lgnd-card">
+        <h3 class="create-lgnd-header">Host Your Adventure</h3>
+
+        <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+          <!-- Title -->
+          <div class="create-lgnd-group mb-4">
+            <label for="title" class="create-lgnd-label">Listing Title</label>
+            <input 
+              id="title" 
+              name="listing[title]" 
+              type="text" 
+              placeholder="e.g., Luxury Beachside Villa" 
+              class="form-control create-lgnd-input" 
+              required>
+            <div class="invalid-feedback create-lgnd-invalid">
+              Please provide a catchy title.
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="create-lgnd-group mb-4">
+            <label for="description" class="create-lgnd-label">Tell us about your space</label>
+            <textarea 
+              id="description" 
+              name="listing[description]" 
+              class="form-control create-lgnd-input" 
+              rows="4" 
+              placeholder="Describe the vibe, the amenities, and the view..." 
+              required></textarea>
+            <div class="invalid-feedback create-lgnd-invalid">
+              A description is required.
+            </div>
+          </div>
+
+          <!-- Category -->
+         <!-- Category -->
+<div class="create-lgnd-group mb-4">
+  <label for="category" class="create-lgnd-label">Category</label>
+
+  <select 
+    id="category" 
+    name="listing[category]" 
+    class="form-control create-lgnd-input create-lgnd-select" 
+    required>
+
+    <option value="" disabled selected hidden>Select a Category</option>
+
+    <option value="trending">Trending</option>
+    <option value="iconic">Iconic</option>
+    <option value="rooms">Rooms</option>
+    <option value="mountain">Mountain</option>
+    <option value="castle">Castle</option>
+    <option value="pools">Pools</option>
+    <option value="camping">Camping</option>
+    <option value="farm">Farm</option>
+    <option value="arctic">Arctic</option>
+    <option value="beach">Beach</option>
+    <option value="luxury">Luxury</option>
+    <option value="budget">Budget</option>
+    <option value="city">City</option>
+    <option value="desert">Desert</option>
+    <option value="forest">Forest</option>
+    <option value="lake">Lake</option>
+    <option value="island">Island</option>
+    <option value="heritage">Heritage</option>
+    <option value="eco">Eco</option>
+    <option value="pet-friendly">Pet-Friendly</option>
+
+  </select>
+
+  <div class="invalid-feedback create-lgnd-invalid">
+    Choosing a category helps guests find you.
+  </div>
+</div>
+
+          <!-- Image Upload -->
+          <div class="create-lgnd-group mb-4">
+            <label for="image" class="create-lgnd-label">Listing Cover Photo</label>
+            <input 
+              id="image" 
+              name="listing[image]" 
+              type="file" 
+              accept="image/*" 
+              class="form-control create-lgnd-input">
+          </div>
+
+          <!-- Price & Country -->
+          <div class="row">
+            <div class="create-lgnd-group mb-4 col-md-5">
+              <label for="price" class="create-lgnd-label">Price per Night</label>
+              <div class="input-group">
+                <span class="input-group-text border-0 bg-transparent fw-bold" style="color: #ff385c;">₹</span>
+                <input 
+                  id="price" 
+                  name="listing[price]" 
+                  type="number" 
+                  placeholder="1500" 
+                  class="form-control create-lgnd-input" 
+                  required>
+              </div>
+              <div class="invalid-feedback create-lgnd-invalid">
+                Please set a price.
+              </div>
+            </div>
+
+            <div class="create-lgnd-group mb-4 col-md-7">
+              <label for="country" class="create-lgnd-label">Country</label>
+              <input 
+                id="country" 
+                name="listing[country]" 
+                type="text" 
+                placeholder="India" 
+                class="form-control create-lgnd-input" 
+                required>
+              <div class="invalid-feedback create-lgnd-invalid">
+                Enter country name.
+              </div>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="create-lgnd-group mb-5">
+            <label for="location" class="create-lgnd-label">Exact Location</label>
+            <input 
+              id="location" 
+              name="listing[location]" 
+              type="text" 
+              placeholder="Bhubaneswar, Odisha" 
+              class="form-control create-lgnd-input" 
+              required>
+            <div class="invalid-feedback create-lgnd-invalid">
+              Location is required.
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="create-lgnd-btn">
+            Create My Listing
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>

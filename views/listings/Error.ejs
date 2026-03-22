@@ -1,0 +1,96 @@
+<style>
+   @keyframes alertEntrance {
+    0% { opacity: 0; transform: translateY(-20px) scale(0.95); filter: blur(5px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+
+  @keyframes alertGlow {
+    0% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15); }
+    50% { box-shadow: 0 8px 30px rgba(220, 53, 69, 0.3); }
+    100% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15); }
+  }
+
+  .luminous-alert-wrapper {
+    animation: alertEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 2rem;
+  }
+
+  .luminous-danger-alert {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: none !important;
+    border-left: 5px solid #dc3545 !important;
+    border-radius: 18px !important;
+    padding: 1.1rem 1.5rem !important;
+    display: flex;
+    align-items: center;
+    color: #a94442 !important;
+    font-weight: 600;
+    animation: alertGlow 3s infinite ease-in-out;
+    position: relative;
+  }
+
+  .luminous-alert-icon {
+    font-size: 1.3rem;
+    color: #dc3545;
+    margin-right: 15px;
+    flex-shrink: 0; 
+  }
+
+  .luminous-alert-content {
+    flex-grow: 1; 
+    padding-right: 20px; 
+  }
+
+  .luminous-alert-message {
+    margin: 0 !important;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .luminous-alert-close {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+    line-height: 1;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+  }
+
+  .luminous-alert-close:hover {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    transform: rotate(90deg); 
+  }
+
+
+</style>
+<div class="row luminous-alert-wrapper">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-10 offset-1">
+        <div class="alert luminous-danger-alert show" role="alert">
+            <div class="luminous-alert-icon">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+
+            <div class="luminous-alert-content">
+                <p class="luminous-alert-message">
+                  <strong>Error:</strong> <%= message %>
+                </p>
+            </div>
+
+            <button type="button" class="luminous-alert-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+</div>

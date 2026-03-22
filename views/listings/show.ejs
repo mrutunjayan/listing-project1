@@ -1,0 +1,183 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+    const listingData = {
+        coordinates: <%- JSON.stringify(listing.geometry.coordinates) %>,
+        title: "<%= listing.title %>"
+    };
+</script>
+
+<div class="container pb-5">
+    <div class="row mt-5 mb-4">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <h1 class="fw-bold display-6 mb-2 text-dark"><%= listing.title %></h1>
+            <div class="d-flex align-items-center text-muted small">
+                <span class="me-3"><i class="fa-solid fa-star text-danger"></i> New</span>
+                <span class="me-3">·</span>
+                <span class="text-decoration-underline fw-bold text-dark"><%= listing.location %>, <%= listing.country %></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="wl-image-wrapper">
+                <img src="<%= listing.image.url %>" class="wl-show-img" alt="listing-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-md-8 wl-content-card">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 50px; height: 50px;">
+                            <span class="h4 mb-0"><%= listing.owner ? listing.owner.username[0].toUpperCase() : 'U' %></span>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="fw-bold mb-0">Hosted by <%= listing.owner ? listing.owner.username : "Unknown" %></h5>
+                            <small class="text-muted">Member since March 2026</small>
+                        </div>
+                    </div>
+                    
+                    <p class="text-secondary fs-5 lh-base"><%= listing.description %></p>
+
+                    <div class="mt-4 pt-2 border-top">
+                        <h4 class="fw-bold text-dark mb-3">What this place offers</h4>
+                        <div class="row text-muted">
+                            <div class="col-6 mb-2"><i class="fa-solid fa-wifi me-2"></i> Free WiFi</div>
+                            <div class="col-6 mb-2"><i class="fa-solid fa-car me-2"></i> Free Parking</div>
+                            <div class="col-6 mb-2"><i class="fa-solid fa-snowflake me-2"></i> Air Conditioning</div>
+                            <div class="col-6 mb-2"><i class="fa-solid fa-kitchen-set me-2"></i> Kitchen Access</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mt-4">
+                    <div class="card p-4 border-0 shadow-lg" style="border-radius: 24px; position: sticky; top: 100px; background: #fff;">
+                        <div class="d-flex justify-content-between align-items-end mb-4">
+                            <h3 class="fw-bold mb-0">&#8377; <%= listing.price.toLocaleString("en-IN") %></h3>
+                            <span class="text-muted">/ night</span>
+                        </div>
+
+                        <% if(currUser && !currUser._id.equals(listing.owner._id)) { %>
+                            <form action="/listings/<%= listing._id %>/book" method="POST">
+                                <button class="btn wl-btn-book w-100 rounded-pill py-3 shadow">Reserve Now</button>
+                            </form>
+                            <p class="text-center text-muted small mt-3 mb-0">You won't be charged yet</p>
+                        <% } %>
+
+                        <div class="d-grid gap-2">
+                            <a href="/listings/<%= listing._id %>/edit" 
+                               class="btn btn-dark rounded-pill py-2"
+                               onclick="return checkLogin()">
+                                Update Listing
+                            </a>
+
+                            
+                            <form method="POST" 
+                                  action="/listings/<%= listing._id %>?_method=DELETE"
+                                  novalidate
+                                  >
+
+                                <button type="submit" class="btn btn-outline-danger rounded-pill py-2 w-100">
+                                    Delete Property
+                                </button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="wl-divider">
+
+    <div class="row">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <% if(currUser){ %>
+                <div class="wl-review-form p-4 mb-5">
+                    <h4 class="fw-bold mb-4"><i class="fa-solid fa-pen-nib me-2"></i>Share Your Experience</h4>
+
+                    <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+                        
+                        <div class="mb-3 mt-3">
+                            <label class="form-label">Rating</label>
+                            <fieldset class="starability-slot">
+    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+
+    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+    <label for="first-rate1" title="Terrible">1 star</label>
+
+    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+    <label for="first-rate2" title="Not good">2 stars</label>
+
+    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+    <label for="first-rate3" title="Average">3 stars</label>
+
+    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+    <label for="first-rate4" title="Very good">4 stars</label>
+
+    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+    <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea name="review[comment]" rows="4"
+                                class="form-control border-0 bg-light rounded-4"
+                                placeholder="Write your review..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark px-5 rounded-pill shadow-sm">
+                            Post Review
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+
+            <% if(listing.reviews.length > 0){ %>
+                <h4 class="fw-bold mb-4">Guest Feedback</h4>
+                <div class="row g-4">
+                    <% for(let review of listing.reviews){ %>
+                        <div class="col-md-6">
+                            <div class="card p-3 shadow-sm">
+                                <p><strong>@<%= review.author.username %></strong></p>
+                                <p><%= review.comment %></p>
+
+                                <% if(currUser && currUser._id.equals(review.author._id)) { %>
+                                    <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-sm text-danger">Remove</button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <hr class="wl-divider">
+
+    <div class="row mb-5 pb-5">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <h4 class="fw-bold mb-4">Where you'll be</h4>
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const isLoggedIn = <%= currUser ? true : false %>;
+
+    function checkLogin() {
+        if (!isLoggedIn) {
+            alert("Please log in to perform this action.");
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -1,0 +1,36 @@
+
+
+
+<div class="flash-msg-container">
+
+    <% if(success && success.length) { %>
+        <div class="alert alert-success alert-dismissible custom-alert" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check me-2"></i>
+                <span><%= success %></span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <% } %>
+
+    <% if(error && error.length) { %>
+        <div class="alert alert-danger alert-dismissible custom-alert" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-exclamation me-2"></i>
+                <span><%= error %></span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <% } %>
+
+</div>
+
+
+<script>
+    setTimeout(() => {
+        document.querySelectorAll(".custom-alert").forEach(alert => {
+            alert.classList.add("fade-out");
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 3000);
+</script>

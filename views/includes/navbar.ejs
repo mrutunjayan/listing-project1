@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-md sticky-top wl-main-navbar">
+  <div class="container-fluid px-md-5">
+    
+    <a class="navbar-brand d-flex align-items-center wl-brand-link" href="/listings">
+      <div class="wl-logo-wrapper">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="wl-brand-svg">
+          <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.392 3.42-6.72 3.42-3.481 0-6.358-2.416-6.358-6.478 0-1.141.27-2.289.81-3.667l.26-.623c.568-1.344 3.947-8.303 8.026-16.57C12.537 1.963 13.991 1 16 1zm0 2c-1.239 0-2.053.539-2.987 2.21l-.523 1.008c-3.951 8.046-7.288 14.905-7.85 16.233-.48 1.218-.727 2.223-.727 3.071 0 2.871 1.99 4.478 4.358 4.478 1.83 0 3.791-1.143 5.617-2.956l.123-.127.112-.119L16 25.101l1.88 2.016.115.12c1.82 1.804 3.774 2.94 5.603 2.94 2.368 0 4.359-1.607 4.359-4.478 0-.898-.231-1.85-.713-3.001l-.142-.34c-.95-2.215-5.071-10.84-7.02-14.663l-.527-1.013C18.053 3.539 17.239 3 16 3z"></path>
+        </svg>
+      </div>
+      <span class="wl-brand-text">wanderlust</span>
+    </a>
+
+    <button class="navbar-toggler border-0 wl-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#wlNavbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="wlNavbarContent">
+      
+      <div class="navbar-nav ms-auto me-auto">
+        <form class="wl-search-wrapper" role="search" action="/listings" method="GET">
+          <input class="wl-search-input" type="search" name="search" placeholder="Search destination" aria-label="Search"/>
+          <button class="wl-search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
+       <div class="navbar-nav ms-auto align-items-center wl-nav-right">
+  <a class="nav-link wl-nav-link d-none d-lg-block me-2" href="/listings">
+      <span class="wl-brand-text">Explore</span></a>
+
+
+      <div class="navbar-nav ms-auto align-items-center wl-nav-right">
+  <a class="nav-link wl-nav-link d-none d-lg-block me-2" href="/listings/new">
+   <span class="wl-brand-text"> Wanderlust your home</span> 
+  </a>
+  
+  <div class="nav-item dropdown">
+    <a class="nav-link wl-profile-pill d-flex align-items-center shadow-sm" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-bars wl-menu-icon"></i>
+      <div class="wl-user-icon">
+        <i class="fa-solid fa-circle-user fa-xl"></i>
+      </div>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end wl-dropdown-menu shadow-lg border-0 mt-3 rounded-4">
+      <% if(!currUser) { %>
+        <li><a class="dropdown-item fw-bold" href="/signup">Sign up</a></li>
+        <li><a class="dropdown-item" href="/login">Log in</a></li>
+      <% } else { %>
+        <li><a class="dropdown-item fw-bold" href="/listings/new">Host your home</a></li>
+        <li><a class="dropdown-item" href="/listings/mybookings">My Bookings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <form action="/logout" method="GET">
+            <button class="dropdown-item text-danger border-0 bg-transparent w-100 text-start" type="submit">Log out</button>
+          </form>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</div>
+    </div>
+  </div>
+</nav>

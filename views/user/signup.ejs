@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<div class="container reg-container">
+    <div class="reg-card">
+        <div class="text-center mb-5">
+            <h2 class="reg-title">SignUp on Wanderlust</h2>
+            <p class="text-muted fw-medium">Join our community of travelers.</p>
+        </div>
+
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <div class="mb-4">
+                <label for="username" class="form-label fw-bold small text-dark ms-1">Username</label>
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    class="form-control reg-input"
+                    placeholder="Choose a unique username"
+                    required
+                >
+                <div class="valid-feedback ms-2">Looks good!</div>
+                <div class="invalid-feedback ms-2">Please enter a username.</div>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="form-label fw-bold small text-dark ms-1">Email</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="form-control reg-input"
+                    placeholder="Enter your email"
+                    required
+                >
+                <div class="invalid-feedback ms-2">Please enter a valid email.</div>
+            </div>
+
+            <div class="mb-5">
+                <label for="password" class="form-label fw-bold small text-dark ms-1">Password</label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="form-control reg-input"
+                    placeholder="Create a password"
+                    required
+                >
+                <div class="invalid-feedback ms-2">Password is required.</div>
+            </div>
+
+            <button class="btn reg-btn w-100">Create Account</button>
+            
+            <div class="text-center mt-5">
+                <p class="small text-muted mb-0">
+                    Already have an account? 
+                    <a href="/login" class="reg-footer-link">Log in</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

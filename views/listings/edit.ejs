@@ -1,0 +1,96 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container edit-lgnd-wrapper">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="edit-lgnd-card">
+        <h3 class="edit-lgnd-header">Edit Your Adventure</h3>
+
+        <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+          <!-- Listing Title -->
+          <div class="edit-lgnd-group mb-4">
+            <label class="edit-lgnd-label">Listing Title</label>
+            <input name="listing[title]" type="text" value="<%= listing.title %>" class="form-control edit-lgnd-input" required>
+            <div class="invalid-feedback edit-lgnd-invalid">Title cannot be empty.</div>
+          </div>
+
+          <!-- Description -->
+          <div class="edit-lgnd-group mb-4">
+            <label class="edit-lgnd-label">Description</label>
+            <textarea name="listing[description]" class="form-control edit-lgnd-input" rows="4" required><%= listing.description %></textarea>
+            <div class="invalid-feedback edit-lgnd-invalid">Please provide a description.</div>
+          </div>
+
+          <!-- Category Dropdown -->
+          <div class="edit-lgnd-group mb-4">
+            <label class="edit-lgnd-label">Category</label>
+            <select name="listing[category]" class="form-control edit-lgnd-input edit-lgnd-select" required>
+              <option value="" disabled>Select a Category</option>
+
+              <% const categories = [
+                "trending","iconic","rooms","mountain","castle","pools",
+                "camping","farm","arctic",
+                "beach","luxury","budget","city","desert","forest",
+                "lake","island","heritage","eco","pet-friendly"
+              ]; %>
+
+              <% categories.forEach(cat => { %>
+                <option value="<%= cat %>" <%= listing.category === cat ? "selected" : "" %>>
+                  <%= cat.charAt(0).toUpperCase() + cat.slice(1) %>
+                </option>
+              <% }) %>
+            </select>
+            <div class="invalid-feedback edit-lgnd-invalid">
+              Choosing a category helps guests find you.
+            </div>
+          </div>
+
+          <!-- Current Image + Upload -->
+          <div class="row mb-4 align-items-center">
+            <div class="col-md-5">
+              <label class="edit-lgnd-label">Current Image</label>
+              <div class="edit-preview-box">
+                <span class="edit-preview-tag">Live Preview</span>
+                <img src="<%= listing.image.url %>" class="img-fluid" style="height: 150px; width: 100%; object-fit: cover;">
+              </div>
+            </div>
+            <div class="col-md-7 mt-3 mt-md-0">
+              <div class="edit-lgnd-group">
+                <label class="edit-lgnd-label">Upload New Photo</label>
+                <input name="listing[image]" type="file" accept="image/*" class="form-control edit-lgnd-input">
+                <small class="text-muted d-block mt-2 ms-1">Leave blank to keep the current image.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price + Country -->
+          <div class="row">
+            <div class="edit-lgnd-group mb-4 col-md-5">
+              <label class="edit-lgnd-label">Price per Night</label>
+              <div class="input-group">
+                <span class="input-group-text border-0 bg-transparent fw-bold" style="color: #ff385c;">₹</span>
+                <input name="listing[price]" type="number" value="<%= listing.price %>" class="form-control edit-lgnd-input" required>
+              </div>
+            </div>
+
+            <div class="edit-lgnd-group mb-4 col-md-7">
+              <label class="edit-lgnd-label">Country</label>
+              <input name="listing[country]" type="text" value="<%= listing.country %>" class="form-control edit-lgnd-input" required>
+            </div>
+          </div>
+
+          <!-- Exact Location -->
+          <div class="edit-lgnd-group mb-5">
+            <label class="edit-lgnd-label">Exact Location</label>
+            <input name="listing[location]" type="text" value="<%= listing.location %>" class="form-control edit-lgnd-input" required>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="edit-lgnd-btn">Update Listing Details</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
