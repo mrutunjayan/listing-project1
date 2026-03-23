@@ -1,4 +1,3 @@
-
 :root {
   --mobile-padding: clamp(0.5rem, 4vw, 1.5rem);
   --mobile-margin: clamp(0.25rem, 3vw, 1rem);
@@ -52,7 +51,6 @@ body {
     font-size: var(--mobile-font-md) !important;
   }
   
- 
   .wl-nav-right .d-none.d-lg-block {
     display: none !important;
   }
@@ -60,6 +58,23 @@ body {
   .wl-dropdown-menu {
     min-width: 250px;
     margin-top: 0.5rem !important;
+  }
+
+  /* FIX: enable horizontal scroll for icons/nav items */
+  .wl-nav-right,
+  .wl-nav-left {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    gap: 0.5rem !important;
+    padding-right: 10px;
+  }
+
+  .wl-nav-right::-webkit-scrollbar,
+  .wl-nav-left::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -76,15 +91,24 @@ body {
 
 @media (max-width: 768px) {
   .filters-wrapper {
-    flex-direction: column !important;
-    gap: 1rem;
-    padding: var(--mobile-padding) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
   }
   
   #filters {
-    justify-content: flex-start !important;
+    flex: 1 !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
     gap: 1rem !important;
-    padding: 0 !important;
+    padding: 0 20px !important;
+    overscroll-behavior-x: contain !important;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none !important;
   }
   
   .filter {
@@ -130,7 +154,6 @@ body {
     border-radius: 20px;
   }
   
-
   .wl-content-card {
     margin-bottom: 2rem !important;
   }
@@ -172,7 +195,6 @@ body {
     font-size: 1.1rem !important;
   }
   
-
   .row > div {
     margin-bottom: 1.5rem;
   }
@@ -220,12 +242,10 @@ body {
 
 
 @media (hover: none) and (pointer: coarse) {
-
   .filter:active,
   .idx-card:active {
     transform: translateY(-2px) !important;
   }
-  
 
   input[type="number"], input[type="search"] {
     font-size: 16px !important;
@@ -241,6 +261,7 @@ body {
   .bk-card {
     margin-bottom: 1.5rem;
   }
+}
 
 @media (max-width: 400px) {
   .wl-main-navbar {
@@ -286,12 +307,29 @@ body {
   }
   
   .wl-search-wrapper {
-    flex-direction: column !important;
-    width: 100% !important;
+    flex-direction: row !important;
+    width: auto !important;
   }
   
   .wl-search-btn {
     margin-left: 0 !important;
     margin-top: 0.25rem !important;
+  }
+
+  /* FIX: horizontal scroll for nav icons on very small screens */
+  .wl-nav-right,
+  .wl-nav-left {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    gap: 0.5rem !important;
+    padding-right: 10px;
+  }
+
+  .wl-nav-right::-webkit-scrollbar,
+  .wl-nav-left::-webkit-scrollbar {
+    display: none;
   }
 }

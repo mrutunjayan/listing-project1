@@ -171,8 +171,10 @@ body{
         flex-wrap: nowrap;
         overflow-x: auto;
         gap: 2.5rem;
-        padding: 0 15px;
+        padding: 0 20px;
         scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
     }
 
     #filters::-webkit-scrollbar { display: none; }
@@ -316,14 +318,17 @@ body{
 
 
 
-  /*  Filter Bar Container */
+  /*  Filter Bar Container - Fixed Horizontal Touch Scrolling */
   #filters {
     display: flex;
     align-items: center;
     overflow-x: auto; 
-    padding: 1rem 0;
+    padding: 1rem 20px;
     gap: 2rem;
     scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
   }
 
   #filters::-webkit-scrollbar {
