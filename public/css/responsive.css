@@ -239,4 +239,57 @@ body {
   .bk-card {
     margin-bottom: 1.5rem;
   }
+
+@media (max-width: 400px) {
+  .wl-main-navbar {
+    padding: 0.25rem 0.5rem !important;
+  }
+  
+  .wl-brand-text {
+    font-size: 1.1rem !important;
+  }
+  
+  .wl-brand-svg {
+    height: 28px !important;
+    width: 28px !important;
+  }
+  
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem !important;
+    --bs-navbar-toggler-padding-y: 0.1rem !important;
+    order: 2 !important;
+    margin-left: auto !important;
+  }
+  
+  .container-fluid {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  
+  .wl-search-input {
+    width: 60% !important;
+    font-size: 0.85rem !important;
+  }
+  
+  html, body {
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .navbar-collapse {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .wl-search-wrapper {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .wl-search-btn {
+    margin-left: 0 !important;
+    margin-top: 0.25rem !important;
+  }
 }
