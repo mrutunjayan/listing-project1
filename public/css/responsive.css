@@ -26,10 +26,12 @@ body {
     width: 100% !important;
     margin: 0.5rem 0 !important;
     order: 3;
+    display: flex !important;
   }
   
   .wl-search-input {
-    width: 70% !important;
+    flex: 1 !important;
+    width: auto !important;
     font-size: var(--mobile-font-md) !important;
   }
   
